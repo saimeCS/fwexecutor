@@ -2,3 +2,4 @@ Executor_Framework.egg-info
 build
 dist
 executor_framework.egg-info
+**/__pycache__
