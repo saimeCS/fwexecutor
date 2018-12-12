@@ -9,6 +9,8 @@ logger.addHandler(logging.StreamHandler())
 
 class RandomOrderExecutor(SequentialExecutor):
 
+    kind = 'randomorder'
+
     def execute(self, func, items):
         logger.info('in random executor')
         import random

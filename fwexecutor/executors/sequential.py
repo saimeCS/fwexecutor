@@ -11,6 +11,8 @@ logger.propagate = False
 
 class SequentialExecutor(BaseExecutor):
 
+    kind = 'sequential'
+    
     def execute(self, func, items):
         try:
             logger.info('in sequential executor')

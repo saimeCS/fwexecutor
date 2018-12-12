@@ -14,6 +14,8 @@ logger.addHandler(logging.StreamHandler(sys.stdout))
 
 class ParallelExecutor(BaseExecutor):
 
+    kind = 'parallel'
+    
     def __init__(self, context=None):
         self._context = context or ExecutionContext()
         try:

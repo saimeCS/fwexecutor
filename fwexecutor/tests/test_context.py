@@ -1,22 +1,20 @@
 # coding: utf-8
 import unittest
 
-from fwexecutor.Context import ExecutionContext
+from fwexecutor.context import ExecutionContext
 
 
 class TestContext(unittest.TestCase):
 
     def test_init_with_no_arg(self):
         ctx = ExecutionContext()
-        self.assertEqual(1, ctx._cpu)
-        self.assertEqual(2, ctx._ram)
-        self.assertIsNone(ctx._framework)
+        self.assertEqual(1, ctx.cpu)
+        self.assertEqual(2, ctx.ram)
 
-    def test_init_with_no_args(self):
+    def test_init_with_args(self):
         ctx = ExecutionContext(cpu=4, ram=16)
-        self.assertEqual(4, ctx._cpu)
-        self.assertEqual(16, ctx._ram)
-        self.assertIsNone(ctx._framework)
+        self.assertEqual(4, ctx.cpu)
+        self.assertEqual(16, ctx.ram)
 
     def test_cpu_property(self):
         ctx = ExecutionContext()
@@ -25,13 +23,13 @@ class TestContext(unittest.TestCase):
         self.assertEqual(5, ctx.cpu)
 
     def test_with_cpu(self):
-        ctx = ExecutionContext().with_cpu(5)
+        ctx = ExecutionContext().with_kv('cpu', 5)
         self.assertEqual(5, ctx.cpu)
 
     def test_with_cpu_and_ram(self):
-        ctx = ExecutionContext().with_cpu(5).with_ram(16)
+        ctx = ExecutionContext().with_kv('cpu', 5).with_kv('ram', 16)
         self.assertEqual(5, ctx.cpu)
         self.assertEqual(16, ctx.ram)
 
     def test_print(self):
-        self.assertEqual('{_cpu: 1, _disk: 10, _framework: None, _parallel: 1, _ram: 2}', str(ExecutionContext()))
+        self.assertEqual('{cpu: 1, disk: 10, parallel: 1, ram: 2}', str(ExecutionContext()))
